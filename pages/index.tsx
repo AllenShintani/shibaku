@@ -1,13 +1,17 @@
-import Link from 'next/link'
-import Layout from '../components/Layout'
+// pages/index.tsx
+import { Button, Container, Typography } from "@mui/material";
+import Link from "next/link";
 
-const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">About</Link>
-    </p>
-  </Layout>
-)
-
-export default IndexPage
+export default function Home() {
+  return (
+    <Container>
+      <Typography variant="h4">ボードゲームクリエイター</Typography>
+      <Link href="/login">
+        <Button variant="contained" color="primary">ログイン</Button>
+      </Link>
+      <Link href="/signup">
+        <Button variant="outlined" color="primary">サインアップ</Button>
+      </Link>
+    </Container>
+  );
+}

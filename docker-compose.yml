@@ -1,0 +1,16 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:10
+    restart: always
+    ports:
+      - 5454:5432
+    environment:
+      POSTGRES_USER: board_konjikun
+      POSTGRES_PASSWORD: konjikun
+      POSTGRES_DB: mydb
+    volumes:
+      - database:/var/lib/postgresql/data
+volumes:
+  database:
+    driver: local
