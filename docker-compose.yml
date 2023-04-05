@@ -4,11 +4,11 @@ services:
     image: postgres:10
     restart: always
     ports:
-      - 5454:5432
+      - 5432:5432
     environment:
-      POSTGRES_USER: board_konjikun
-      POSTGRES_PASSWORD: konjikun
-      POSTGRES_DB: mydb
+      POSTGRES_USER: konjikun
+      POSTGRES_PASSWORD: board_konjikun
+      POSTGRES_DB: postgresql
     volumes:
       - database:/var/lib/postgresql/data
 volumes:
