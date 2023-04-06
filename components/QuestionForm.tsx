@@ -22,20 +22,16 @@ const QuestionForm: React.FC<QuestionFormProps> = ({ onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <TextField
-        value={question}
-        onChange={(e) => setQuestion(e.target.value)}
-        label="Your question"
-        fullWidth
-        margin="normal"
-      />
-      <Select value={tag} onChange={handleTagChange}>
-        <MenuItem value="tag1">Tag 1</MenuItem>
-        <MenuItem value="tag2">Tag 2</MenuItem>
-        <MenuItem value="tag3">Tag 3</MenuItem>
-      </Select>
+<TextField
+  value={question}
+  onChange={(e) => setQuestion(e.target.value)}
+  label="Your question"
+  fullWidth
+  margin="normal"
+  InputLabelProps={{ shrink: true }}
+/>
       <Button type="submit" variant="contained" color="primary">
-        Ask
+        レポートを作成する
       </Button>
     </form>
   );

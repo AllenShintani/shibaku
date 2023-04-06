@@ -1,5 +1,5 @@
 import fastify from 'fastify';
-import { fetchQuestions, submitQuestion, fetchQuestionsByTag } from '../lib/api';
+import { fetchQuestions, fetchQuestionsByTag } from '../lib/api';
 
 const server = fastify({ logger: true });
 
@@ -25,8 +25,8 @@ server.get<{ Params: QuestionParams }>('/api/questions/:tag', async (request, re
 
 server.post<{ Body: QuestionRequestBody }>('/api/questions', async (request, reply) => {
   const { question, tag } = request.body;
-  const createdQuestion = await submitQuestion(question, tag);
-  reply.send(createdQuestion);
+  //const createdQuestion = await submitQuestion(question, tag);
+  //reply.send(createdQuestion);
 });
 
 const start = async () => {
