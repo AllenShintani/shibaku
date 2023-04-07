@@ -13,3 +13,12 @@ model Question {
   createdAt DateTime @default(now())
   tag       String
 }
+
+model User {
+  id        Int      @id @default(autoincrement())
+  //name      String
+  mail     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  faculty    String
+}

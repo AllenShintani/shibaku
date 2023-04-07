@@ -16,16 +16,13 @@ import axios from 'axios'
 import Router from 'next/router'
 import { FirebaseError, getApp } from 'firebase/app'
 import { createUserWithEmailAndPassword, getIdToken, getAuth } from 'firebase/auth';
-//import firebase from '@firebase/app-compat'
+import firebase from '@firebase/app-compat'
 import 'firebase/compat/auth'
-/*
+
 import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  getIdToken,
+
   sendEmailVerification,
 } from '@firebase/auth'
-*/
 
 const theme = createTheme()
 
@@ -36,7 +33,7 @@ const userMail = {
   default: '',
 }
 //usestateでindivdata
-
+console.log(-1)
 //ボタンが押されたときの処理
 const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
   e.preventDefault()
@@ -45,24 +42,24 @@ const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
   const indivData = {
     mail: data.get('email'),
     password: data.get('password'),
-    name: data.get('lastName'),
+    //name: data.get('name'),
     faculty: data.get('faculty'),
   }
 
+  console.log(0)
+
   //--------user情報をserverに送信
-  function sendToServer() {
+  async function sendToServer() {
     console.log(1)
-    axios
-      .post('http://localhost:8080/data', indivData)
-      .then(async () => {
-        console.log(2)
-        console.log('postの成功。')
-        console.log(getApp())
-        router.push('/')
-      })
-      .catch((err) => {
-        console.log('psqlへのデータの送信エラー')
-      })
+    try {
+      await axios.post('http://localhost:8080/data', indivData)
+      console.log(2)
+      console.log('postの成功。')
+
+      router.push('/')
+    } catch (err) {
+      console.log('psqlへのデータの送信エラー')
+    }
     console.log(3)
   }
 
@@ -79,6 +76,7 @@ const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
       //トークンを取得
       const user = auth.currentUser
       const idToken = await getIdToken(user!, true)
+      console.log('idTokenの取得に成功')
       console.log(idToken)
     } catch (event) {
       if (event instanceof FirebaseError) {
@@ -88,14 +86,16 @@ const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
   }
 
   console.log(4)
-  authenticate()
-  sendToServer()
+
+  await authenticate()
+  await sendToServer()
+
   console.log(5)
 }
 
 export default function SignUp() {
-  /*
-  }
+  
+  
   /*firebaseの認証
     try {
       const auth = getAuth()
@@ -214,13 +214,15 @@ export default function SignUp() {
             </Grid>
 
             <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              登録
-            </Button>
+  onClick={()=>{handleSubmit}}
+  type="submit"
+  fullWidth
+  variant="contained"
+  sx={{ mt: 3, mb: 2 }}
+>
+  登録
+</Button>
+
             <Grid
               container
               justifyContent="flex-end"

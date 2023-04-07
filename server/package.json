@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@fastify/cors": "^8.2.0",
+    "@fastify/jwt": "^6.3.3",
+    "fastify": "^4.10.0",
+    "fastify-formbody": "^5.3.0",
+    "fastify-prisma-client": "^4.0.0",
+    "prisma": "^4.6.1"
+  }
+}

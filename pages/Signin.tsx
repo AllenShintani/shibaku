@@ -37,7 +37,6 @@ const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
   const indivData = {
     mail: data.get('email'),
     password: data.get('password'),
-    name: data.get('lastName'),
     faculty: data.get('faculty'),
   }
 
@@ -49,7 +48,6 @@ const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       .then(async () => {
         console.log(2)
         console.log('postの成功。')
-        console.log(getApp())
         router.push('/')
       })
       .catch((err) => {
